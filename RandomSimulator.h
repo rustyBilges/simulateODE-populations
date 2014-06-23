@@ -33,8 +33,6 @@ public:
 		srand(seed);
 		bool finish = false;
 
-		Simulation* sim;
-
 		while (!finish){
 
 			sim = new Simulation(simID, unitCount, timestepCount, dt, modelType, responseType);
