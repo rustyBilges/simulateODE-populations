@@ -158,13 +158,14 @@ void Simulation::createFunctionalResponse(string responseType){
 
 bool Simulation::getSimulationResults(vector<vector<double> >& populationTimeseries){
 
-	if ((int)populationTimeseries.size()!=timestepCount+1 || (int)populationTimeseries.at(0).size()!=unitCount){
+	if ((int)populationTimeseries.size()!=timestepCount+1 || (int)populationTimeseries.at(0).size()!=unitCount+1){
 		cerr << "population timeseries vector wrong size, cannot obtain simulation results. exiting.." << endl;
 		return false;
 	}
 
 	for (int t=0; t<=timestepCount; t++){
-		for (int i=0; i<unitCount; i++){
+		populationTimeseries.at(t).at(0) = t*dt;
+		for (int i=1; i<=unitCount; i++){
 			populationTimeseries.at(t).at(i) = units[i]->getHistory()->getHistoryTi(t);
 		}
 	}
