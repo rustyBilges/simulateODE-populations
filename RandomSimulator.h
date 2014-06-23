@@ -23,6 +23,10 @@ private:
 	IUnitUpdater* updater;
 
 public:
+	~RandomSimulator(){
+		delete sim;
+		delete updater;
+	}
 	RandomSimulator(int simID, int unitCount, int timestepCount, double dt, string modelType, string responseType, unsigned int seed=0):simID(simID),unitCount(unitCount), timestepCount(timestepCount), dt(dt), modelType(modelType), responseType(responseType), seed(seed){
 
 		sim = new Simulation(simID, unitCount, timestepCount, dt, modelType, responseType);
