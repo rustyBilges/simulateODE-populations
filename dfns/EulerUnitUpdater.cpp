@@ -8,15 +8,20 @@
 #include "IUnitUpdater.h"
 #include <cfloat>
 
-EulerUnitUpdater::EulerUnitUpdater(){}
+EulerUnitUpdater::EulerUnitUpdater(){
+	ARBITRARY_DELTA = 1e-20;
+	ARBITRARY_MAX = 1000;
+	ARBITRARY_MIN = 0.01;
+}
 
+EulerUnitUpdater::EulerUnitUpdater(double min, double delta){
+	ARBITRARY_DELTA = delta;
+	ARBITRARY_MAX = 1000;
+	ARBITRARY_MIN = min;
+}
 void EulerUnitUpdater::updateUnit_test(IDynamicalUnit *u, double totalCouplingInput){}
 
 bool EulerUnitUpdater::updateUnit(IDynamicalUnit **allUnits, int nUnits, int unitToUpdate, double dt, int masterClock){
-
-		double ARBITRARY_MIN = 0.01;//1e-20;//0.000001;
-		double ARBITRARY_MAX = 1000;
-		double ARBITRARY_DELTA = 1e-20;//0.0000001;
 
 		double tempState = allUnits[unitToUpdate]->getHistory()->getHistoryTi(masterClock);
 

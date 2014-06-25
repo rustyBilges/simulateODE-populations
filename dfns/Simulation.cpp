@@ -166,8 +166,23 @@ bool Simulation::getSimulationResults(vector<vector<double> >& populationTimeser
 	for (int t=0; t<=timestepCount; t++){
 		populationTimeseries.at(t).at(0) = t*dt;
 		for (int i=1; i<=unitCount; i++){
-			populationTimeseries.at(t).at(i) = units[i]->getHistory()->getHistoryTi(t);
+			populationTimeseries.at(t).at(i) = units[i-1]->getHistory()->getHistoryTi(t);
 		}
+	}
+
+	return true;
+}
+
+bool Simulation::getSimulationResults(vector<vector<double> >& populationTimeseries, vector<vector< vector<double> > >& interactionTimeseries){
+
+
+	if(!getSimulationResults(populationTimeseries)){
+		cerr << "cannot get simulation results: population timeseries." << endl;
+		return false;
+	}
+	if(!interactionTracker->returnSeries(interactionTimeseries)){
+		cerr << "cannot get simulation results: interaction timeseries." << endl;
+		return false;
 	}
 
 	return true;

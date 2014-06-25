@@ -81,9 +81,15 @@ public:
 
 class EulerUnitUpdater : public IUnitUpdater
 {
+private:
+	double ARBITRARY_MIN;
+	double ARBITRARY_MAX;
+	double ARBITRARY_DELTA;
+
 
 public:
 	EulerUnitUpdater();
+	EulerUnitUpdater(double min, double delta);
 
 	void updateUnit_test(IDynamicalUnit *u, double totalCouplingInput);
 

@@ -17,7 +17,7 @@ public:
 	virtual ~IVariableTracker(){}
 	virtual void store(int masterClock, IFunctionalResponse* response) = 0;
 	virtual bool save(string suffix, int simID) = 0;
-
+	virtual bool returnSeries(vector<vector <vector<double> > >& series) = 0;
 };
 
 
@@ -85,6 +85,18 @@ public:
 
 	}
 
+	bool returnSeries(vector<vector <vector<double> > >& series){
+
+		try
+		{
+			series = biomassTimeseries;
+		}
+		catch(int e)
+		{
+			return false;
+		}
+		return true;
+	}
 };
 
 class InteractionTracker:public IVariableTracker
@@ -136,7 +148,6 @@ public:
 		return true;
 	}
 
-
 	void print(ofstream& os){
 
 		for (int t=0; t<=timestepCount; t++){
@@ -151,6 +162,18 @@ public:
 
 	}
 
+	bool returnSeries(vector<vector <vector<double> > >& series){
+
+		try
+		{
+			series = interactionTimeseries;
+		}
+		catch(int e)
+		{
+			return false;
+		}
+		return true;
+	}
 };
 
 
@@ -169,6 +192,10 @@ public:
 
 	bool save(string suffix, int simID){return true;}
 
+	bool returnSeries(vector<vector <vector<double> > >& series){
+
+		return true;
+	}
 
 };
 

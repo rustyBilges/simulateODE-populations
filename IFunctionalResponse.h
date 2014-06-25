@@ -131,7 +131,7 @@ public:
 			// species i is the predator..
 			x0  = allUnits[j]->getHistory()->getHistoryTi(masterClock);
 			Ks = parameters->saturationConstants.at(unitID);
-			return aij/(x0+Ks) - aij/pow((x0+Ks),2);
+			return aij/(x0+Ks) - (aij*x0)/pow((x0+Ks),2);
 		}
 		else {
 			// species i is being predated by species j

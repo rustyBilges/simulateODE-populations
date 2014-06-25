@@ -53,7 +53,7 @@ public:
 
 	// ohter results we want to know about?
 	bool getSimulationResults(vector<vector<double> >& populationTimeseries);
-//	bool getSimulationResults(vector<vector<double> >& populationTimeseries, vector<vector< vector<double> > >& interactionTimeseries);
+	bool getSimulationResults(vector<vector<double> >& populationTimeseries, vector<vector< vector<double> > >& interactionTimeseries);
 //	bool getSimulationResults(vector<vector<double> >& populationTimeseries, vector<vector< vector<double> > >& interactionTimeseries, vector<vector< vector<double> > >& biomassTimeseriesvector);
 
 private:
